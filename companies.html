@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>참가기업 · 2026 크리에이터 미디어 대전</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Pretendard',-apple-system,sans-serif; color:#2B1E55; -webkit-font-smoothing:antialiased; background:#fff; word-break:keep-all; overflow-wrap:break-word; }
+  ::selection{ background:#E12C84; color:#fff; }
+  a{ text-decoration:none; color:inherit; }
+  img{ display:block; max-width:100%; }
+  /* hover: 실제 동작 있는 요소만 (링크/버튼/네비/아코디언) */
+  .navlink:hover{ color:#E12C84 !important; }
+  .btn{ transition:transform .16s ease, box-shadow .16s ease, background .16s ease; }
+  .btn:hover{ opacity:0.9; }
+  .linkcard{ transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .linkcard:hover{ border-color:#D9CDEC !important; }
+  .glitch{ text-shadow:2.5px 0 rgba(225,44,132,.55), -2.5px 0 rgba(44,111,214,.55); }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+  .sectlabel{ font-weight:800; font-size:13px; letter-spacing:0.14em; }
+  .h2{ font-weight:800; font-size:30px; letter-spacing:-0.02em; color:#2B1E55; }
+
+  .seg{ display:inline-flex; border:1px solid #DEDAE6; border-radius:12px; overflow:hidden; background:#fff; }
+  .seg-tab{ padding:11px 24px; font-weight:700; font-size:14px; color:#5C5380; background:#fff; border-left:1px solid #ECE4F6; transition:background .16s ease, color .16s ease; }
+  .seg-tab:first-child{ border-left:0; }
+  .seg-tab:hover{ background:#F4EFFB; color:#2B1E55; }
+  .seg-tab.is-active, .seg-tab.is-active:hover{ background:#5B3FA0; color:#fff; }
+
+  /* category filter chips (interactive) */
+  .chip{ cursor:pointer; transition:background .16s ease, color .16s ease, border-color .16s ease; }
+  .chip:hover{ border-color:#C9BCE6; }
+  .chip.active{ background:linear-gradient(120deg,#6B3FA0,#2C6FD6); color:#fff; border-color:transparent; }
+
+  #companyGrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media (max-width:1000px){ #companyGrid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:760px){
+    .wrap{ padding:0 20px; }
+    .hide-sm{ display:none !important; }
+    .h2{ font-size:24px !important; }
+    #companyGrid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:760px){ .stepflow{ flex-direction:column !important; align-items:stretch !important; } .stepconn{ display:none !important; } }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV (현재 페이지 링크만 color:#E12C84 로) ===== -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.82); backdrop-filter:blur(14px); border-bottom:1px solid #EDE7F6;">
+  <div class="wrap" style="height:72px; display:flex; align-items:center; gap:34px;">
+    <a href="index.html" style="display:flex; align-items:center; gap:11px;">
+      <img src="assets/images/logo.png" alt="크리에이터 미디어 대전" style="height:36px; width:auto; display:block;">
+      <span style="font-weight:800; font-size:16px; letter-spacing:-0.01em; color:#2B1E55;">크리에이터 미디어 대전</span>
+    </a>
+    <nav class="hide-sm" style="display:flex; gap:26px; margin-left:8px;">
+      <a class="navlink" href="about.html" style="font-weight:700; font-size:15px; color:#3F3866;">About</a>
+      <a class="navlink" href="program.html" style="font-weight:700; font-size:15px; color:#3F3866;">프로그램</a>
+      <a class="navlink" href="companies.html" style="font-weight:700; font-size:15px; color:#E12C84;">참가기업</a>
+      <a class="navlink" href="register.html" style="font-weight:700; font-size:15px; color:#3F3866;">참관객</a>
+      <a class="navlink" href="creators.html" style="font-weight:700; font-size:15px; color:#3F3866;">크리에이터</a>
+      <a class="navlink" href="support-center.html" style="font-weight:700; font-size:15px; color:#3F3866;">고객지원</a>
+    </nav>
+    <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+      <span class="hide-sm" style="font-size:13px; font-weight:600; color:#9A93B5;">KOR<span style="color:#D8D0E8;">&nbsp;|&nbsp;</span><span style="color:#C3BAD8;">ENG</span></span>
+      <a class="btn" href="register-form.html" style="padding:10px 20px; border-radius:999px; font-weight:700; font-size:14px; color:#fff; background:linear-gradient(120deg,#6B3FA0,#2C6FD6);">사전등록</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HEADER 밴드 ===== -->
+<section style="position:relative; overflow:hidden; background:linear-gradient(120deg,#FBE0EE 0%,#EDE2F6 40%,#DCE8F8 100%);">
+  <div style="position:absolute; inset:0; opacity:0.45; background-image:radial-gradient(circle, rgba(225,44,132,0.26) 1.5px, transparent 1.7px); background-size:14px 14px; -webkit-mask-image:linear-gradient(115deg,#000,transparent 60%); mask-image:linear-gradient(115deg,#000,transparent 60%);"></div>
+  <div class="wrap" style="position:relative; padding:58px 32px 50px;">
+    <p class="sectlabel" style="color:#2C6FD6;">PARTNERS</p>
+    <h1 style="margin-top:10px; font-weight:800; font-size:46px; letter-spacing:-0.02em; color:#2B1E55;">참가기업</h1>
+    <p style="margin-top:12px; font-size:17px; color:#5C5380;">미디어·콘텐츠·플랫폼·장비 분야 120여 개 기업이 함께합니다.</p>
+  </div>
+</section>
+
+<!-- ===== 본문 ===== -->
+<main class="wrap" style="padding:64px 32px 90px;">
+
+  <!-- in-page subnav (segmented) -->
+
+  <nav class="seg" style="position:sticky; top:84px; z-index:20; margin-bottom:54px;">
+    <a class="seg-tab is-active" href="companies.html">참가안내</a>
+    <a class="seg-tab" href="companies-list.html">기업리스트</a>
+  </nav>
+
+  <!-- ============ 1) 참가안내 ============ -->
+  <section id="guide" style="scroll-margin-top:90px;">
+    <p class="sectlabel" style="color:#E12C84;">GUIDE</p>
+    <h2 class="h2" style="margin-top:10px;">참가안내</h2>
+    <p style="margin-top:14px; max-width:760px; font-size:17px; line-height:1.7; color:#5C5380;">
+      크리에이터 미디어 대전은 미디어·콘텐츠 산업 기업에게 잠재 고객·크리에이터·파트너를 직접 만나는 자리를 제공합니다.
+    </p>
+
+    <!-- 부스 종류/규모 -->
+    <h3 style="margin-top:46px; font-weight:800; font-size:20px; color:#2B1E55;">부스 종류 · 규모</h3>
+    <div style="margin-top:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+
+      <!-- 기본 부스 -->
+      <div style="border:1px solid #DEDAE6; border-radius:20px; overflow:hidden; background:#fff;">
+        <div style="background:#2C6FD6; padding:16px 22px; display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-weight:800; font-size:16px; color:#fff;">기본 부스</span>
+          <span style="font-weight:700; font-size:12px; color:#fff; background:rgba(255,255,255,0.18); padding:5px 11px; border-radius:999px;">BASIC</span>
+        </div>
+        <div style="padding:24px 22px 26px;">
+          <p style="font-weight:800; font-size:15px; color:#2B1E55;">2m × 2m · 기본 집기 포함</p>
+          <ul style="margin-top:16px; list-style:none; display:flex; flex-direction:column; gap:11px;">
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#2C6FD6; font-weight:800;">✓</span> 부스 칸막이 · 기본 조명</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#2C6FD6; font-weight:800;">✓</span> 상담 테이블 1 · 의자 2</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#2C6FD6; font-weight:800;">✓</span> 상호 사인물 · 콘센트</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#2C6FD6; font-weight:800;">✓</span> 참가사 기본 노출</li>
+          </ul>
+          <p style="margin-top:20px; font-size:13px; color:#9A93B5;">참가비 문의</p>
+        </div>
+      </div>
+
+      <!-- 프리미엄 부스 -->
+      <div style="border:1px solid #DEDAE6; border-radius:20px; overflow:hidden; background:#fff;">
+        <div style="background:#E12C84; padding:16px 22px; display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-weight:800; font-size:16px; color:#fff;">프리미엄 부스</span>
+          <span style="font-weight:700; font-size:12px; color:#fff; background:rgba(255,255,255,0.20); padding:5px 11px; border-radius:999px;">PREMIUM</span>
+        </div>
+        <div style="padding:24px 22px 26px;">
+          <p style="font-weight:800; font-size:15px; color:#2B1E55;">3m × 3m · 코너 위치</p>
+          <ul style="margin-top:16px; list-style:none; display:flex; flex-direction:column; gap:11px;">
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#E12C84; font-weight:800;">✓</span> 코너형 오픈 2면</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#E12C84; font-weight:800;">✓</span> 백월 그래픽 · 라이트박스</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#E12C84; font-weight:800;">✓</span> 상담 라운지 · 모니터 1</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#E12C84; font-weight:800;">✓</span> 공식 채널 우선 노출</li>
+          </ul>
+          <p style="margin-top:20px; font-size:13px; color:#9A93B5;">참가비 문의</p>
+        </div>
+      </div>
+
+      <!-- 커스텀 부스 -->
+      <div style="border:1px solid #DEDAE6; border-radius:20px; overflow:hidden; background:#fff;">
+        <div style="background:#6F4DA8; padding:16px 22px; display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-weight:800; font-size:16px; color:#fff;">커스텀 부스</span>
+          <span style="font-weight:700; font-size:12px; color:#fff; background:rgba(255,255,255,0.18); padding:5px 11px; border-radius:999px;">CUSTOM</span>
+        </div>
+        <div style="padding:24px 22px 26px;">
+          <p style="font-weight:800; font-size:15px; color:#2B1E55;">규모 · 위치 협의</p>
+          <ul style="margin-top:16px; list-style:none; display:flex; flex-direction:column; gap:11px;">
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#6F4DA8; font-weight:800;">✓</span> 독립관 · 대형 부스 설계</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#6F4DA8; font-weight:800;">✓</span> 체험존 · 무대 구성</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#6F4DA8; font-weight:800;">✓</span> 전담 매니저 배정</li>
+            <li style="font-size:14px; color:#5C5380; display:flex; gap:9px;"><span style="color:#6F4DA8; font-weight:800;">✓</span> 프로그램 연계 패키지</li>
+          </ul>
+          <p style="margin-top:20px; font-size:13px; color:#9A93B5;">사무국 별도 협의</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 신청 절차 -->
+    <div style="margin-top:48px; border:1px solid #DEDAE6; border-radius:22px; padding:32px 36px;">
+    <h3 style="font-weight:800; font-size:20px; color:#2B1E55;">신청 절차</h3>
+    <div class="stepflow" style="margin-top:24px; display:flex; align-items:flex-start; gap:0;">
+      <!-- step 1 -->
+      <div style="flex:1; text-align:center;">
+        <div style="width:54px; height:54px; margin:0 auto; border-radius:50%; background:#E12C84; color:#fff; font-weight:800; font-size:20px; display:flex; align-items:center; justify-content:center;">1</div>
+        <p style="margin-top:14px; font-weight:800; font-size:15px; color:#2B1E55;">신청서 접수</p>
+        <p style="margin-top:6px; font-size:13px; color:#9A93B5;">온라인 신청서 제출</p>
+      </div>
+      <div class="stepconn" style="flex:0 0 28px; height:54px; display:flex; align-items:center; justify-content:center; color:#D8D0E8; font-size:20px;">→</div>
+      <!-- step 2 -->
+      <div style="flex:1; text-align:center;">
+        <div style="width:54px; height:54px; margin:0 auto; border-radius:50%; background:#6F4DA8; color:#fff; font-weight:800; font-size:20px; display:flex; align-items:center; justify-content:center;">2</div>
+        <p style="margin-top:14px; font-weight:800; font-size:15px; color:#2B1E55;">심사 · 선정</p>
+        <p style="margin-top:6px; font-size:13px; color:#9A93B5;">참가 적격 검토</p>
+      </div>
+      <div class="stepconn" style="flex:0 0 28px; height:54px; display:flex; align-items:center; justify-content:center; color:#D8D0E8; font-size:20px;">→</div>
+      <!-- step 3 -->
+      <div style="flex:1; text-align:center;">
+        <div style="width:54px; height:54px; margin:0 auto; border-radius:50%; background:#2C6FD6; color:#fff; font-weight:800; font-size:20px; display:flex; align-items:center; justify-content:center;">3</div>
+        <p style="margin-top:14px; font-weight:800; font-size:15px; color:#2B1E55;">계약 · 부스 배정</p>
+        <p style="margin-top:6px; font-size:13px; color:#9A93B5;">위치 확정 · 계약</p>
+      </div>
+      <div class="stepconn" style="flex:0 0 28px; height:54px; display:flex; align-items:center; justify-content:center; color:#D8D0E8; font-size:20px;">→</div>
+      <!-- step 4 -->
+      <div style="flex:1; text-align:center;">
+        <div style="width:54px; height:54px; margin:0 auto; border-radius:50%; background:#18B6C9; color:#fff; font-weight:800; font-size:20px; display:flex; align-items:center; justify-content:center;">4</div>
+        <p style="margin-top:14px; font-weight:800; font-size:15px; color:#2B1E55;">행사 참가</p>
+        <p style="margin-top:6px; font-size:13px; color:#9A93B5;">8.28–29 현장 운영</p>
+      </div>
+    </div>
+    </div>
+
+    <!-- 참가 혜택 -->
+    <div style="margin-top:30px; border:1px solid #DEDAE6; border-radius:22px; padding:32px 36px;">
+    <h3 style="font-weight:800; font-size:20px; color:#2B1E55;">참가 혜택</h3>
+    <div style="margin-top:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px 36px;">
+      <div style="display:flex; align-items:flex-start; gap:11px;"><span style="margin-top:2px; width:9px; height:9px; border-radius:50%; background:#E12C84; flex:none;"></span><span style="font-size:15px; font-weight:700; color:#3F3866;">공식 홈페이지·앱 노출</span></div>
+      <div style="display:flex; align-items:flex-start; gap:11px;"><span style="margin-top:2px; width:9px; height:9px; border-radius:50%; background:#6F4DA8; flex:none;"></span><span style="font-size:15px; font-weight:700; color:#3F3866;">크리에이터 매칭</span></div>
+      <div style="display:flex; align-items:flex-start; gap:11px;"><span style="margin-top:2px; width:9px; height:9px; border-radius:50%; background:#2C6FD6; flex:none;"></span><span style="font-size:15px; font-weight:700; color:#3F3866;">현장 5만 관람객</span></div>
+      <div style="display:flex; align-items:flex-start; gap:11px;"><span style="margin-top:2px; width:9px; height:9px; border-radius:50%; background:#18B6C9; flex:none;"></span><span style="font-size:15px; font-weight:700; color:#3F3866;">미디어 홍보</span></div>
+      <div style="display:flex; align-items:flex-start; gap:11px;"><span style="margin-top:2px; width:9px; height:9px; border-radius:50%; background:#3FB44A; flex:none;"></span><span style="font-size:15px; font-weight:700; color:#3F3866;">네트워킹 라운지</span></div>
+      <div style="display:flex; align-items:flex-start; gap:11px;"><span style="margin-top:2px; width:9px; height:9px; border-radius:50%; background:#AECE3C; flex:none;"></span><span style="font-size:15px; font-weight:700; color:#3F3866;">참가 리포트 제공</span></div>
+    </div>
+    </div>
+
+    <!-- CTA (포컬 그라데이션 밴드) -->
+    <div style="margin-top:56px; border-radius:24px; padding:52px 40px; text-align:center; background:linear-gradient(120deg,#6B3FA0,#2C6FD6); box-shadow:0 18px 50px rgba(80,50,140,0.22);">
+      <p style="font-weight:800; font-size:26px; letter-spacing:-0.01em; color:#fff; line-height:1.35;">5만 관람객과 만나는 부스, 지금 신청하세요</p>
+      <p style="margin-top:12px; font-size:16px; color:rgba(255,255,255,0.86);">참가 신청 후 사무국에서 부스 위치·패키지를 안내해 드립니다.</p>
+      <a class="btn" href="#" style="display:inline-block; margin-top:26px; padding:19px 52px; border-radius:999px; font-weight:800; font-size:18px; color:#5B3FA0; background:#fff; box-shadow:0 12px 30px rgba(0,0,0,0.18);">부스 참가 신청 ▸</a>
+    </div>
+  </section>
+
+  <!-- divider -->
+  <div style="height:1px; background:#EDE7F6; margin:66px 0;"></div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background:#2B1E55; color:#fff;">
+  <div class="wrap" style="padding:54px 32px 30px;">
+    <div style="display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap;">
+      <div style="max-width:380px;">
+        <div style="display:flex; align-items:center; gap:11px;">
+          <img src="assets/images/logo.png" alt="크리에이터 미디어 대전" style="height:34px; width:auto; display:block;">
+          <span style="font-weight:800; font-size:16px;">2026 크리에이터 미디어 대전</span>
+        </div>
+        <p style="margin-top:16px; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.6);">
+          2026. 8. 28.(금) ~ 29.(토)<br>
+          서울 마곡 코엑스 1F 전시장 &amp; 마곡광장
+        </p>
+        <!-- SNS 바로가기 -->
+        <div style="margin-top:22px; display:flex; gap:12px;">
+          <a class="sns btn" href="#" aria-label="Instagram" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="#fff" stroke="none"/></svg></a>
+          <a class="sns btn" href="#" aria-label="YouTube" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .6 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.4 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+          <a class="sns btn" href="#" aria-label="X" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="sns btn" href="#" aria-label="Naver Blog" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;">blog</a>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:60px; flex-wrap:wrap;">
+        <div>
+          <div style="font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:0.04em;">바로가기</div>
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+            <a class="navlink" href="index.html" style="font-size:14px; color:rgba(255,255,255,0.8);">행사소개</a>
+            <a class="navlink" href="program.html" style="font-size:14px; color:rgba(255,255,255,0.8);">프로그램</a>
+            <a class="navlink" href="companies.html" style="font-size:14px; color:rgba(255,255,255,0.8);">참가기업</a>
+            <a class="navlink" href="register.html" style="font-size:14px; color:rgba(255,255,255,0.8);">사전등록</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:0.04em;">고객지원</div>
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">공지사항</a>
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">FAQ</a>
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">Q&amp;A</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:44px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.12); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center;">
+      <span style="font-size:13px; color:rgba(255,255,255,0.5);">주최 방송미디어통신위원회 · 주관 한국전파진흥협회(RAPA)</span>
+      <span style="font-size:13px; color:rgba(255,255,255,0.4);">© 2026 Creator Media Festa. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>참관객 사전등록 · 2026 크리에이터 미디어 대전</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Pretendard',-apple-system,sans-serif; color:#2B1E55; -webkit-font-smoothing:antialiased; background:#fff; word-break:keep-all; overflow-wrap:break-word; }
+  ::selection{ background:#E12C84; color:#fff; }
+  a{ text-decoration:none; color:inherit; }
+  img{ display:block; max-width:100%; }
+  /* hover: 실제 동작 있는 요소만 (링크/버튼/네비/아코디언) */
+  .navlink:hover{ color:#E12C84 !important; }
+  .btn{ transition:transform .16s ease, box-shadow .16s ease, background .16s ease; }
+  .btn:hover{ opacity:0.9; }
+  .linkcard{ transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .linkcard:hover{ border-color:#D9CDEC !important; }
+  .glitch{ text-shadow:2.5px 0 rgba(225,44,132,.55), -2.5px 0 rgba(44,111,214,.55); }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+  .sectlabel{ font-weight:800; font-size:13px; letter-spacing:0.14em; }
+  .h2{ font-weight:800; font-size:30px; letter-spacing:-0.02em; color:#2B1E55; }
+  @media (max-width:760px){
+    .wrap{ padding:0 20px; }
+    .hide-sm{ display:none !important; }
+    .h2{ font-size:24px !important; }
+  }
+
+  /* ===== register page ===== */
+  .seg{ display:inline-flex; border:1px solid #DEDAE6; border-radius:12px; overflow:hidden; background:#fff; }
+  .seg-tab{ padding:11px 24px; font-weight:700; font-size:14px; color:#5C5380; background:#fff; border-left:1px solid #ECE4F6; transition:background .16s ease, color .16s ease; }
+  .seg-tab:first-child{ border-left:0; }
+  .seg-tab:hover{ background:#F4EFFB; color:#2B1E55; }
+  .seg-tab.is-active, .seg-tab.is-active:hover{ background:#5B3FA0; color:#fff; }
+  .finput{ font-family:inherit; transition:border-color .16s ease, box-shadow .16s ease; }
+  .finput:focus{ outline:none; border-color:#2C6FD6 !important; box-shadow:0 0 0 3px rgba(44,111,214,0.12); }
+  .ghost-btn{ transition:background .16s ease, border-color .16s ease, color .16s ease; }
+  .ghost-btn:hover{ background:#F3EEFA; }
+  .chip{ transition:background .14s ease, color .14s ease, border-color .14s ease; user-select:none; }
+  .chip:hover{ border-color:#C7B9E4; }
+  .chip[aria-pressed="true"]{ background:#FBE4F0; border-color:#E12C84; color:#B11468; }
+  .radio-row{ transition:border-color .14s ease, background .14s ease; }
+  .radio-row:hover{ border-color:#C7B9E4; }
+  .radio-row.on{ border-color:#2C6FD6; background:#EEF4FD; }
+  .submit-btn{ transition:transform .16s ease, box-shadow .16s ease; }
+  .submit-btn:hover{ opacity:0.9; }
+  @media (max-width:760px){
+    .phone-row{ flex-direction:column !important; align-items:stretch !important; }
+    .phone-row .ghost-btn{ width:100% !important; }
+    .benefit-grid{ grid-template-columns:1fr 1fr !important; }
+    .step-row{ flex-direction:column !important; }
+    .step-arrow{ transform:rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.82); backdrop-filter:blur(14px); border-bottom:1px solid #EDE7F6;">
+  <div class="wrap" style="height:72px; display:flex; align-items:center; gap:34px;">
+    <a href="index.html" style="display:flex; align-items:center; gap:11px;">
+      <img src="assets/images/logo.png" alt="크리에이터 미디어 대전" style="height:36px; width:auto; display:block;">
+      <span style="font-weight:800; font-size:16px; letter-spacing:-0.01em; color:#2B1E55;">크리에이터 미디어 대전</span>
+    </a>
+    <nav class="hide-sm" style="display:flex; gap:26px; margin-left:8px;">
+      <a class="navlink" href="about.html" style="font-weight:700; font-size:15px; color:#3F3866;">About</a>
+      <a class="navlink" href="program.html" style="font-weight:700; font-size:15px; color:#3F3866;">프로그램</a>
+      <a class="navlink" href="companies.html" style="font-weight:700; font-size:15px; color:#3F3866;">참가기업</a>
+      <a class="navlink" href="register.html" style="font-weight:700; font-size:15px; color:#E12C84;">참관객</a>
+      <a class="navlink" href="creators.html" style="font-weight:700; font-size:15px; color:#3F3866;">크리에이터</a>
+      <a class="navlink" href="support-center.html" style="font-weight:700; font-size:15px; color:#3F3866;">고객지원</a>
+    </nav>
+    <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+      <span class="hide-sm" style="font-size:13px; font-weight:600; color:#9A93B5;">KOR<span style="color:#D8D0E8;">&nbsp;|&nbsp;</span><span style="color:#C3BAD8;">ENG</span></span>
+      <a class="btn" href="register-form.html" style="padding:10px 20px; border-radius:999px; font-weight:700; font-size:14px; color:#fff; background:linear-gradient(120deg,#6B3FA0,#2C6FD6);">사전등록</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE HEADER ===== -->
+<section style="position:relative; overflow:hidden; background:linear-gradient(120deg,#FBE0EE 0%,#EDE2F6 40%,#DCE8F8 100%);">
+  <div style="position:absolute; inset:0; opacity:0.45; background-image:radial-gradient(circle, rgba(225,44,132,0.26) 1.5px, transparent 1.7px); background-size:14px 14px; -webkit-mask-image:linear-gradient(115deg,#000,transparent 60%); mask-image:linear-gradient(115deg,#000,transparent 60%);"></div>
+  <div class="wrap" style="position:relative; padding:58px 32px 50px;">
+    <p class="sectlabel" style="color:#2C6FD6;">VISITOR</p>
+    <h1 style="margin-top:10px; font-weight:800; font-size:46px; letter-spacing:-0.02em; color:#2B1E55;">참관객 사전등록</h1>
+    <p style="margin-top:12px; font-size:17px; color:#5C5380;">사전등록하고 무료 입장과 현장 혜택을 받으세요.</p>
+  </div>
+</section>
+
+<!-- ===== 본문 ===== -->
+<main class="wrap" style="padding:64px 32px 90px;">
+
+  <!-- in-page subnav (segmented) -->
+
+  <nav class="seg" style="position:sticky; top:84px; z-index:20; margin-bottom:48px;">
+    <a class="seg-tab" href="register.html">사전등록 안내</a>
+    <a class="seg-tab is-active" href="register-form.html">사전등록</a>
+  </nav>
+
+  <!-- ============ #form ============ -->
+  <section id="form" style="scroll-margin-top:90px; margin-top:24px;">
+    <p class="sectlabel" style="color:#2C6FD6; text-align:center;">REGISTER</p>
+    <h2 class="h2" style="margin-top:8px; text-align:center;">사전등록</h2>
+    <p style="margin-top:10px; text-align:center; font-size:15px; color:#6E6790;">아래 정보를 입력하고 사전등록을 신청하세요.</p>
+
+    <form id="regForm" novalidate style="max-width:640px; margin:34px auto 0; background:#fff; border:1px solid #DEDAE6; border-radius:20px; padding:40px; box-shadow:0 18px 50px rgba(80,50,140,0.08);">
+
+      <!-- 이름 -->
+      <div style="margin-bottom:24px;">
+        <label for="f-name" style="display:block; font-weight:700; font-size:14px; color:#2B1E55; margin-bottom:9px;">이름 <span style="color:#E12C84;">*</span></label>
+        <input id="f-name" class="finput" type="text" required placeholder="이름을 입력하세요" style="width:100%; height:50px; padding:0 16px; border:1px solid #DEDAE6; border-radius:12px; font-size:15px; color:#2B1E55; background:#fff;">
+      </div>
+
+      <!-- 휴대폰 번호 -->
+      <div style="margin-bottom:24px;">
+        <label for="f-phone" style="display:block; font-weight:700; font-size:14px; color:#2B1E55; margin-bottom:9px;">휴대폰 번호 <span style="color:#E12C84;">*</span></label>
+        <div class="phone-row" style="display:flex; gap:10px; align-items:stretch;">
+          <input id="f-phone" class="finput" type="tel" inputmode="numeric" placeholder="010-0000-0000" style="flex:1; height:50px; padding:0 16px; border:1px solid #DEDAE6; border-radius:12px; font-size:15px; color:#2B1E55; background:#fff;">
+          <button type="button" id="btn-request" class="ghost-btn" style="flex:none; height:50px; padding:0 18px; border:2px solid #6F4DA8; border-radius:12px; background:#fff; font-weight:700; font-size:14px; color:#6F4DA8; cursor:pointer; white-space:nowrap;">인증요청</button>
+        </div>
+        <div class="phone-row" style="display:flex; gap:10px; align-items:stretch; margin-top:10px;">
+          <input id="f-code" class="finput" type="text" inputmode="numeric" placeholder="인증번호 입력" style="flex:1; height:50px; padding:0 16px; border:1px solid #DEDAE6; border-radius:12px; font-size:15px; color:#2B1E55; background:#fff;">
+          <button type="button" id="btn-confirm" class="ghost-btn" style="flex:none; height:50px; padding:0 18px; border:2px solid #6F4DA8; border-radius:12px; background:#fff; font-weight:700; font-size:14px; color:#6F4DA8; cursor:pointer; white-space:nowrap;">확인</button>
+        </div>
+        <p style="margin-top:10px; font-size:12.5px; color:#9A93B5;">※ 휴대폰 인증 방식은 추후 확정됩니다.</p>
+      </div>
+
+      <!-- 이메일 -->
+      <div style="margin-bottom:24px;">
+        <label for="f-email" style="display:block; font-weight:700; font-size:14px; color:#2B1E55; margin-bottom:9px;">이메일</label>
+        <input id="f-email" class="finput" type="email" placeholder="example@email.com" style="width:100%; height:50px; padding:0 16px; border:1px solid #DEDAE6; border-radius:12px; font-size:15px; color:#2B1E55; background:#fff;">
+      </div>
+
+      <!-- 관심 분야 -->
+      <div style="margin-bottom:24px;">
+        <label style="display:block; font-weight:700; font-size:14px; color:#2B1E55; margin-bottom:11px;">관심 분야 <span style="font-weight:600; font-size:12.5px; color:#9A93B5;">(복수 선택 가능)</span></label>
+        <div id="chip-group" style="display:flex; flex-wrap:wrap; gap:9px;">
+          <button type="button" class="chip" aria-pressed="false" data-cat="영상" style="padding:9px 16px; border:1px solid #DEDAE6; border-radius:999px; background:#fff; font-weight:700; font-size:14px; color:#6E6790; cursor:pointer;">영상</button>
+          <button type="button" class="chip" aria-pressed="false" data-cat="방송" style="padding:9px 16px; border:1px solid #DEDAE6; border-radius:999px; background:#fff; font-weight:700; font-size:14px; color:#6E6790; cursor:pointer;">방송</button>
+          <button type="button" class="chip" aria-pressed="false" data-cat="게임" style="padding:9px 16px; border:1px solid #DEDAE6; border-radius:999px; background:#fff; font-weight:700; font-size:14px; color:#6E6790; cursor:pointer;">게임</button>
+          <button type="button" class="chip" aria-pressed="false" data-cat="음악" style="padding:9px 16px; border:1px solid #DEDAE6; border-radius:999px; background:#fff; font-weight:700; font-size:14px; color:#6E6790; cursor:pointer;">음악</button>
+          <button type="button" class="chip" aria-pressed="false" data-cat="사진" style="padding:9px 16px; border:1px solid #DEDAE6; border-radius:999px; background:#fff; font-weight:700; font-size:14px; color:#6E6790; cursor:pointer;">사진</button>
+          <button type="button" class="chip" aria-pressed="false" data-cat="웹툰" style="padding:9px 16px; border:1px solid #DEDAE6; border-radius:999px; background:#fff; font-weight:700; font-size:14px; color:#6E6790; cursor:pointer;">웹툰</button>
+          <button type="button" class="chip" aria-pressed="false" data-cat="라이브" style="padding:9px 16px; border:1px solid #DEDAE6; border-radius:999px; background:#fff; font-weight:700; font-size:14px; color:#6E6790; cursor:pointer;">라이브</button>
+          <button type="button" class="chip" aria-pressed="false" data-cat="컨퍼런스" style="padding:9px 16px; border:1px solid #DEDAE6; border-radius:999px; background:#fff; font-weight:700; font-size:14px; color:#6E6790; cursor:pointer;">컨퍼런스</button>
+        </div>
+      </div>
+
+      <!-- 방문 예정일 -->
+      <div style="margin-bottom:24px;">
+        <label style="display:block; font-weight:700; font-size:14px; color:#2B1E55; margin-bottom:11px;">방문 예정일</label>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <label class="radio-row on" style="flex:1; min-width:130px; display:flex; align-items:center; gap:10px; padding:13px 16px; border:1px solid #2C6FD6; border-radius:12px; background:#EEF4FD; cursor:pointer;">
+            <input type="radio" name="visitday" value="8.28" checked style="accent-color:#2C6FD6; width:17px; height:17px;">
+            <span style="font-weight:700; font-size:14px; color:#2B1E55;">8.28 (금)</span>
+          </label>
+          <label class="radio-row" style="flex:1; min-width:130px; display:flex; align-items:center; gap:10px; padding:13px 16px; border:1px solid #DEDAE6; border-radius:12px; background:#fff; cursor:pointer;">
+            <input type="radio" name="visitday" value="8.29" style="accent-color:#2C6FD6; width:17px; height:17px;">
+            <span style="font-weight:700; font-size:14px; color:#2B1E55;">8.29 (토)</span>
+          </label>
+          <label class="radio-row" style="flex:1; min-width:130px; display:flex; align-items:center; gap:10px; padding:13px 16px; border:1px solid #DEDAE6; border-radius:12px; background:#fff; cursor:pointer;">
+            <input type="radio" name="visitday" value="양일" style="accent-color:#2C6FD6; width:17px; height:17px;">
+            <span style="font-weight:700; font-size:14px; color:#2B1E55;">양일</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 개인정보 동의 -->
+      <div style="margin-bottom:28px; padding-top:22px; border-top:1px solid #EDE7F6;">
+        <label style="display:flex; align-items:flex-start; gap:11px; cursor:pointer;">
+          <input id="f-agree" type="checkbox" required style="margin-top:3px; accent-color:#E12C84; width:17px; height:17px; flex:none;">
+          <span style="font-size:14px; line-height:1.6; color:#2B1E55;">
+            <span style="font-weight:700;">개인정보 수집·이용에 동의합니다. <span style="color:#E12C84;">*</span></span><br>
+            <span style="font-size:13px; color:#6E6790;">수집 항목: 이름, 휴대폰 번호, 이메일. 수집 목적: 사전등록 및 행사 운영. 보유 기간: 행사 종료 후 6개월. 동의를 거부할 수 있으나 이 경우 사전등록이 제한됩니다.</span>
+          </span>
+        </label>
+      </div>
+
+      <!-- submit -->
+      <button type="submit" class="submit-btn" style="width:100%; height:54px; border:none; border-radius:999px; background:linear-gradient(120deg,#6B3FA0,#2C6FD6); color:#fff; font-weight:800; font-size:16px; cursor:pointer; box-shadow:0 10px 24px rgba(72,80,200,0.30);">사전등록 신청</button>
+
+      <!-- success message (hidden) -->
+      <div id="success-msg" role="status" style="display:none; margin-top:20px; padding:18px 20px; border:1px solid #C9E5CD; border-radius:14px; background:#EFF9F0;">
+        <div style="font-weight:800; font-size:15px; color:#2E8E3A;">사전등록 신청이 접수되었습니다.</div>
+        <p style="margin-top:6px; font-size:13.5px; line-height:1.6; color:#4E7A53;">입력하신 연락처로 등록 확인 안내를 보내드릴 예정입니다. 본 페이지는 프로토타입으로, 실제 데이터는 저장되지 않습니다.</p>
+      </div>
+
+    </form>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer style="background:#2B1E55; color:#fff;">
+  <div class="wrap" style="padding:54px 32px 30px;">
+    <div style="display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap;">
+      <div style="max-width:380px;">
+        <div style="display:flex; align-items:center; gap:11px;">
+          <img src="assets/images/logo.png" alt="크리에이터 미디어 대전" style="height:34px; width:auto; display:block;">
+          <span style="font-weight:800; font-size:16px;">2026 크리에이터 미디어 대전</span>
+        </div>
+        <p style="margin-top:16px; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.6);">
+          2026. 8. 28.(금) ~ 29.(토)<br>
+          서울 마곡 코엑스 1F 전시장 &amp; 마곡광장
+        </p>
+        <!-- SNS 바로가기 -->
+        <div style="margin-top:22px; display:flex; gap:12px;">
+          <a class="sns btn" href="#" aria-label="Instagram" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="#fff" stroke="none"/></svg></a>
+          <a class="sns btn" href="#" aria-label="YouTube" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .6 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.4 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+          <a class="sns btn" href="#" aria-label="X" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="sns btn" href="#" aria-label="Naver Blog" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;">blog</a>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:60px; flex-wrap:wrap;">
+        <div>
+          <div style="font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:0.04em;">바로가기</div>
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+            <a class="navlink" href="index.html" style="font-size:14px; color:rgba(255,255,255,0.8);">행사소개</a>
+            <a class="navlink" href="program.html" style="font-size:14px; color:rgba(255,255,255,0.8);">프로그램</a>
+            <a class="navlink" href="companies.html" style="font-size:14px; color:rgba(255,255,255,0.8);">참가기업</a>
+            <a class="navlink" href="register.html" style="font-size:14px; color:rgba(255,255,255,0.8);">사전등록</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:0.04em;">고객지원</div>
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">공지사항</a>
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">FAQ</a>
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">Q&amp;A</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:44px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.12); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center;">
+      <span style="font-size:13px; color:rgba(255,255,255,0.5);">주최 방송미디어통신위원회 · 주관 한국전파진흥협회(RAPA)</span>
+      <span style="font-size:13px; color:rgba(255,255,255,0.4);">© 2026 Creator Media Festa. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 관심 분야 칩 토글 (시각적 활성 상태만)
+  document.querySelectorAll('#chip-group .chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var on = chip.getAttribute('aria-pressed') === 'true';
+      chip.setAttribute('aria-pressed', on ? 'false' : 'true');
+    });
+  });
+
+  // 방문 예정일 라디오 행 강조
+  document.querySelectorAll('input[name="visitday"]').forEach(function(r){
+    r.addEventListener('change', function(){
+      document.querySelectorAll('.radio-row').forEach(function(row){ row.classList.remove('on'); });
+      r.closest('.radio-row').classList.add('on');
+    });
+  });
+
+  // 휴대폰 인증 버튼 — 동작 없는 시각적 플레이스홀더
+  var btnReq = document.getElementById('btn-request');
+  var btnConf = document.getElementById('btn-confirm');
+  function flashActive(btn){
+    btn.style.background = '#6F4DA8';
+    btn.style.color = '#fff';
+    setTimeout(function(){ btn.style.background = '#fff'; btn.style.color = '#6F4DA8'; }, 240);
+  }
+  btnReq.addEventListener('click', function(){ flashActive(btnReq); });
+  btnConf.addEventListener('click', function(){ flashActive(btnConf); });
+
+  // 제출 — 정적 프로토타입, 인라인 성공 메시지
+  document.getElementById('regForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('f-name').value.trim();
+    var agree = document.getElementById('f-agree').checked;
+    if(!name){ document.getElementById('f-name').focus(); return; }
+    if(!agree){ document.getElementById('f-agree').focus(); return; }
+    var msg = document.getElementById('success-msg');
+    msg.style.display = 'block';
+    msg.scrollIntoView({ behavior:'smooth', block:'center' });
+  });
+</script>
+</body>
+</html>

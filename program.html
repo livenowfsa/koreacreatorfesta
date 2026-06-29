@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로그램 일정 · 2026 크리에이터 미디어 대전</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Pretendard',-apple-system,sans-serif; color:#2B1E55; -webkit-font-smoothing:antialiased; background:#fff; word-break:keep-all; overflow-wrap:break-word; }
+  ::selection{ background:#E12C84; color:#fff; }
+  a{ text-decoration:none; color:inherit; }
+  .navlink:hover{ color:#E12C84 !important; }
+  .ghcard{ transition:transform .18s ease, box-shadow .18s ease; }
+  .ghcard{ transition:none; }
+  /* day band (히어로 아래 띠, 절반 분할) */
+  .day-band{ display:grid; grid-template-columns:1fr 1fr; max-width:1200px; margin:0 auto; }
+  .dayhalf{ appearance:none; border:0; border-right:1px solid #DEDAE6; cursor:pointer; font-family:inherit; padding:22px 16px; font-weight:800; font-size:18px; letter-spacing:-0.01em; color:#6B3FA0; background:#fff; transition:background .16s ease, color .16s ease; }
+  .dayhalf:last-child{ border-right:0; }
+  .dayhalf .d-sub{ font-weight:800; font-size:18px; }
+  .dayhalf.on{ background:linear-gradient(120deg,#6B3FA0,#2C6FD6); color:#fff; }
+  /* 뷰 토글 (리스트/그리드) */
+  .seg{ display:inline-flex; border:1px solid #DEDAE6; border-radius:12px; overflow:hidden; background:#fff; }
+  .seg-tab{ appearance:none; cursor:pointer; font-family:inherit; padding:11px 24px; font-weight:700; font-size:14px; color:#5C5380; background:#fff; border:0; border-left:1px solid #ECE4F6; transition:background .16s ease, color .16s ease; }
+  .seg-tab:first-child{ border-left:0; }
+  .seg-tab:hover{ background:#F4EFFB; color:#2B1E55; }
+  .seg-tab.is-active, .seg-tab.is-active:hover{ background:#5B3FA0; color:#fff; }
+  /* 프로그램 리스트 (리치 카드) */
+  .prow{ display:grid; grid-template-columns:128px 1fr; border-radius:20px; overflow:hidden; border:1px solid #DEDAE6; box-shadow:0 8px 26px rgba(80,50,140,0.07); scroll-margin-top:90px; }
+  .prow-time{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; padding:20px 12px; color:#fff; font-variant-numeric:tabular-nums; }
+  .prow-time .t-start{ font-weight:800; font-size:21px; letter-spacing:-0.01em; }
+  .prow-time .t-bar{ width:20px; height:2px; background:rgba(255,255,255,0.6); }
+  .prow-time .t-end{ font-weight:600; font-size:14px; opacity:0.9; }
+  .prow-body{ position:relative; padding:24px 28px; }
+  .prow-halftone{ position:absolute; inset:0; opacity:0.4; pointer-events:none; background-image:radial-gradient(circle, rgba(255,255,255,0.7) 1.4px, transparent 1.6px); background-size:13px 13px; -webkit-mask-image:linear-gradient(100deg,#000,transparent 70%); mask-image:linear-gradient(100deg,#000,transparent 70%); }
+  .prow-inner{ position:relative; display:flex; justify-content:space-between; gap:24px; align-items:center; flex-wrap:wrap; }
+  .prow-textcol{ flex:1; min-width:240px; }
+  .prow-head{ display:flex; align-items:center; gap:9px; }
+  .cat-badge{ padding:5px 13px; border-radius:999px; font-weight:700; font-size:12px; color:#fff; }
+  .stage-name{ font-weight:700; font-size:13px; }
+  .prow-title{ margin-top:11px; font-weight:800; font-size:22px; letter-spacing:-0.01em; color:#2B1E55; }
+  .prow-desc{ margin-top:7px; font-size:14.5px; line-height:1.6; color:#5C5380; max-width:520px; }
+  .prow.hl{ animation:hlpulse 2.8s ease; }
+  @keyframes hlpulse{
+    0%   { box-shadow:0 8px 26px rgba(80,50,140,0.07), 0 0 0 0 transparent; transform:scale(1); }
+    14%  { box-shadow:0 12px 32px rgba(80,50,140,0.22), 0 0 0 2px var(--hl); transform:scale(1.015); }
+    42%  { box-shadow:0 10px 28px rgba(80,50,140,0.13), 0 0 0 1px var(--hl); transform:scale(1); }
+    68%  { box-shadow:0 12px 32px rgba(80,50,140,0.22), 0 0 0 2px var(--hl); transform:scale(1.01); }
+    100% { box-shadow:0 8px 26px rgba(80,50,140,0.07), 0 0 0 0 transparent; transform:scale(1); }
+  }
+  /* 출연자 얼굴 */
+  .acc-cast{ flex:none; display:flex; gap:14px; }
+  .acc-face{ text-align:center; width:58px; }
+  .acc-avatar{ width:54px; height:54px; margin:0 auto; border-radius:50%; background:#fff; border:2px solid; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:19px; }
+  .acc-face-name{ margin-top:5px; font-weight:700; font-size:12px; color:#2B1E55; }
+  .acc-face-role{ font-size:10.5px; color:#9A93B5; }
+  .acc-ph{ color:#B7B0C6 !important; }
+  .acc-avatar-ph{ border-color:#E6E2EE !important; background:#F4F4F6; }
+  #timetable .ghcard{ cursor:pointer; }
+  @media (max-width:760px){
+    .prow{ grid-template-columns:1fr; }
+    .prow-time{ flex-direction:row; gap:10px; padding:12px; }
+    .prow-time .t-bar{ width:14px; }
+    .prow-inner{ align-items:flex-start; }
+    .acc-cast{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.82); backdrop-filter:blur(14px); border-bottom:1px solid #EDE7F6;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 32px; height:72px; display:flex; align-items:center; gap:34px;">
+    <a href="index.html" style="display:flex; align-items:center; gap:11px;">
+      <img src="assets/images/logo.png" alt="크리에이터 미디어 대전" style="height:36px; width:auto; display:block;">
+      <span style="font-weight:800; font-size:16px; letter-spacing:-0.01em; color:#2B1E55;">크리에이터 미디어 대전</span>
+    </a>
+    <nav style="display:flex; gap:26px; margin-left:8px;">
+      <a class="navlink" href="about.html" style="font-weight:700; font-size:15px; color:#3F3866;">About</a>
+      <a class="navlink" href="program.html" style="font-weight:700; font-size:15px; color:#E12C84;">프로그램</a>
+      <a class="navlink" href="companies.html" style="font-weight:700; font-size:15px; color:#3F3866;">참가기업</a>
+      <a class="navlink" href="register.html" style="font-weight:700; font-size:15px; color:#3F3866;">참관객</a>
+      <a class="navlink" href="creators.html" style="font-weight:700; font-size:15px; color:#3F3866;">크리에이터</a>
+      <a class="navlink" href="support-center.html" style="font-weight:700; font-size:15px; color:#3F3866;">고객지원</a>
+    </nav>
+    <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+      <span style="font-size:13px; font-weight:600; color:#9A93B5;">KOR<span style="color:#D8D0E8;">&nbsp;|&nbsp;</span><span style="color:#C3BAD8;">ENG</span></span>
+      <a href="register-form.html" style="padding:10px 20px; border-radius:999px; font-weight:700; font-size:14px; color:#fff; background:linear-gradient(120deg,#6B3FA0,#2C6FD6);">사전등록</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== PAGE HEADER ===================== -->
+<section style="position:relative; overflow:hidden; background:linear-gradient(120deg,#FBE0EE 0%,#EDE2F6 40%,#DCE8F8 100%);">
+  <div style="position:absolute; inset:0; opacity:0.45; background-image:radial-gradient(circle, rgba(225,44,132,0.26) 1.5px, transparent 1.7px); background-size:14px 14px; -webkit-mask-image:linear-gradient(115deg,#000,transparent 60%); mask-image:linear-gradient(115deg,#000,transparent 60%);"></div>
+  <div style="position:relative; max-width:1200px; margin:0 auto; padding:58px 32px 50px;">
+    <p style="font-weight:700; font-size:14px; letter-spacing:0.14em; color:#2C6FD6;">PROGRAM</p>
+    <h1 style="margin-top:10px; font-weight:800; font-size:46px; letter-spacing:-0.02em; color:#2B1E55;">프로그램 일정</h1>
+    <p style="margin-top:12px; font-size:17px; color:#5C5380;">이틀간 마곡 코엑스와 마곡광장에서 펼쳐지는 무대 · 체험 · 공연 프로그램을 확인하세요.</p>
+  </div>
+</section>
+
+<!-- ===================== DAY 띠 (히어로 아래, 절반 분할) ===================== -->
+<div style="border-bottom:1px solid #DEDAE6; background:#fff;">
+  <div class="day-band" id="dayBand"></div>
+</div>
+
+<main style="max-width:1200px; margin:0 auto; padding:36px 32px 90px;">
+
+  <!-- 뷰 토글 -->
+  <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px; flex-wrap:wrap;">
+    <nav class="seg" id="viewToggle">
+      <button class="seg-tab" data-view="grid">시간표</button>
+      <button class="seg-tab" data-view="list">상세 프로그램</button>
+    </nav>
+    <span id="viewHint" style="font-size:14px; color:#6E6790;"></span>
+  </div>
+
+  <!-- LIST VIEW -->
+  <div id="listView">
+    <div id="progList" style="display:flex; flex-direction:column; gap:16px;"></div>
+  </div>
+
+  <!-- GRID VIEW -->
+  <div id="gridView">
+    <div id="legend" style="display:flex; flex-wrap:wrap; gap:18px; margin-bottom:18px;"></div>
+    <div style="overflow-x:auto; border-radius:20px; border:1px solid #DEDAE6; box-shadow:0 8px 26px rgba(80,50,140,0.06);">
+      <div id="timetable" style="min-width:760px; display:grid; grid-template-columns:72px repeat(3,1fr); grid-template-rows:48px repeat(24,30px); background:#fff;"></div>
+    </div>
+  </div>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="background:#2B1E55; color:#fff;">
+  <div style="max-width:1200px; margin:0 auto; padding:54px 32px 30px;">
+    <div style="display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap;">
+      <div style="max-width:380px;">
+        <div style="display:flex; align-items:center; gap:11px;">
+          <img src="assets/images/logo.png" alt="크리에이터 미디어 대전" style="height:34px; width:auto; display:block;">
+          <span style="font-weight:800; font-size:16px;">2026 크리에이터 미디어 대전</span>
+        </div>
+        <p style="margin-top:16px; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.6);">
+          2026. 8. 28.(금) ~ 29.(토)<br>
+          서울 마곡 코엑스 1F 전시장 &amp; 마곡광장
+        </p>
+        <!-- SNS 바로가기 -->
+        <div style="margin-top:22px; display:flex; gap:12px;">
+          <a class="sns btn" href="#" aria-label="Instagram" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="#fff" stroke="none"/></svg></a>
+          <a class="sns btn" href="#" aria-label="YouTube" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .6 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.4 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+          <a class="sns btn" href="#" aria-label="X" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="sns btn" href="#" aria-label="Naver Blog" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;">blog</a>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:60px; flex-wrap:wrap;">
+        <div>
+          <div style="font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:0.04em;">바로가기</div>
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+            <a class="navlink" href="index.html" style="font-size:14px; color:rgba(255,255,255,0.8);">행사소개</a>
+            <a class="navlink" href="program.html" style="font-size:14px; color:rgba(255,255,255,0.8);">프로그램</a>
+            <a class="navlink" href="companies.html" style="font-size:14px; color:rgba(255,255,255,0.8);">참가기업</a>
+            <a class="navlink" href="register.html" style="font-size:14px; color:rgba(255,255,255,0.8);">사전등록</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:0.04em;">고객지원</div>
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">공지사항</a>
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">FAQ</a>
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">Q&amp;A</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:44px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.12); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center;">
+      <span style="font-size:13px; color:rgba(255,255,255,0.5);">주최 방송미디어통신위원회 · 주관 한국전파진흥협회(RAPA)</span>
+      <span style="font-size:13px; color:rgba(255,255,255,0.4);">© 2026 Creator Media Festa. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== DATA (크리대전 프로그램.dc.html의 DCLogic.DATA를 그대로 이식) =====
+const DATA = {
+  days: ['8.28 (금)', '8.29 (토)'],
+  stages: [
+    { name:'PLAY STAGE',  color:'#E12C84', bg:'#FBE4F0' },
+    { name:'PLAY STUDIO', color:'#2C6FD6', bg:'#E3EDFC' },
+    { name:'PLAY GROUND', color:'#2E9239', bg:'#E2F3E3' },
+  ],
+  schedule: [
+    [
+      { st:0, s:'11:00', e:'12:00', title:'개막식 & 오프닝 퍼포먼스' },
+      { st:0, s:'12:20', e:'13:20', title:'코미디 크리에이터 쇼' },
+      { st:0, s:'13:40', e:'14:40', title:'라이브 아이돌 무대' },
+      { st:0, s:'15:00', e:'16:00', title:'크리에이터 토크쇼' },
+      { st:0, s:'17:00', e:'18:30', title:'뉴미디어 시상식' },
+      { st:1, s:'11:30', e:'12:30', title:'게임 스트리밍 대결' },
+      { st:1, s:'13:00', e:'14:00', title:'ASMR 사운드 클래스' },
+      { st:1, s:'14:30', e:'15:30', title:'1인 방송 장비 세미나' },
+      { st:1, s:'16:00', e:'17:00', title:'영상 편집 워크숍' },
+      { st:2, s:'11:00', e:'12:00', title:'포토 부스 오픈' },
+      { st:2, s:'12:30', e:'13:30', title:'마곡광장 버스킹' },
+      { st:2, s:'14:00', e:'15:30', title:'푸드 & 굿즈 마켓' },
+      { st:2, s:'16:30', e:'18:00', title:'야외 라이브 공연' },
+    ],
+    [
+      { st:0, s:'11:00', e:'12:00', title:'팬미팅 토크 콘서트' },
+      { st:0, s:'12:20', e:'13:20', title:'브이로그 크리에이터 쇼' },
+      { st:0, s:'13:40', e:'14:40', title:'커버댄스 챌린지' },
+      { st:0, s:'15:00', e:'16:30', title:'창작자 컨퍼런스' },
+      { st:0, s:'17:00', e:'18:30', title:'폐막식 & 클로징 무대' },
+      { st:1, s:'11:30', e:'12:30', title:'AI 콘텐츠 제작 데모' },
+      { st:1, s:'13:00', e:'14:00', title:'팟캐스트 공개녹음' },
+      { st:1, s:'14:30', e:'15:30', title:'썸네일 디자인 클래스' },
+      { st:1, s:'16:00', e:'17:00', title:'수익화 전략 세미나' },
+      { st:2, s:'11:00', e:'12:30', title:'플리마켓 & 사인회' },
+      { st:2, s:'13:00', e:'14:00', title:'버스킹 오디션' },
+      { st:2, s:'14:30', e:'16:00', title:'야외 푸드 페스타' },
+      { st:2, s:'16:30', e:'18:00', title:'클로징 불꽃 라이브' },
+    ],
+  ],
+  featured: [
+    [
+      { st:0, s:'11:00', e:'12:00', cat:'개막', title:'개막식 & 오프닝 퍼포먼스', desc:'2026 크리에이터 미디어 대전의 화려한 시작. 축하 공연과 함께 이틀간의 여정을 엽니다.', cast:[['도훈하','MC'],['강민기','MC'],['제프뷰','공연']] },
+      { st:0, s:'12:20', e:'13:20', cat:'코미디', title:'코미디 크리에이터 쇼', desc:'코미디 크리에이터들의 합동 무대. 콜라보로 펼쳐지는 유쾌한 라이브 코미디 쇼.', cast:[['하림','출연'],['민녕','출연']] },
+      { st:0, s:'13:40', e:'14:40', cat:'라이브', title:'라이브 아이돌 무대', desc:'뛰어난 입담과 재주를 가진 크리에이터들이 선보이는 스페셜 라이브 아이돌 무대.', cast:[['낭월','보컬'],['일오월','퍼포먼스']] },
+      { st:0, s:'17:00', e:'18:30', cat:'시상', title:'뉴미디어 시상식', desc:'올해의 크리에이터를 가리는 뉴미디어 어워드. 부문별 수상자 발표와 축하 무대.', cast:[['진행','MC'],['시상','게스트']] },
+    ],
+    [
+      { st:0, s:'11:00', e:'12:00', cat:'팬미팅', title:'팬미팅 토크 콘서트', desc:'인기 크리에이터와 팬이 함께하는 토크 콘서트. 라이브 Q&A와 미니 공연.', cast:[['보라','호스트'],['지훈','게스트']] },
+      { st:0, s:'13:40', e:'14:40', cat:'댄스', title:'커버댄스 챌린지', desc:'전국에서 모인 댄스 크리에이터들의 커버댄스 배틀. 관객 투표로 우승자 결정.', cast:[['린','심사'],['제이','심사']] },
+      { st:0, s:'15:00', e:'16:30', cat:'컨퍼런스', title:'창작자 컨퍼런스', desc:'콘텐츠 산업의 미래를 논하는 크리에이터 컨퍼런스. 업계 리더들의 키노트.', cast:[['연사','키노트'],['패널','토론']] },
+      { st:0, s:'17:00', e:'18:30', cat:'폐막', title:'폐막식 & 클로징 무대', desc:'이틀간의 축제를 마무리하는 폐막식. 피날레 라이브와 불꽃 퍼포먼스.', cast:[['MC','진행'],['밴드','공연']] },
+    ],
+  ],
+};
+
+const tg = [
+  'linear-gradient(150deg,#E12C84,#EC6FA9)',
+  'linear-gradient(150deg,#2C6FD6,#4FA3E8)',
+  'linear-gradient(150deg,#3FB44A,#AECE3C)',
+];
+
+let day = 0, view = 'grid';
+
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const toMin = (t) => { const [h,m] = t.split(':').map(Number); return h*60+m; };
+const rowOf = (t) => 2 + Math.round((toMin(t)-660)/20);
+const keyOf = (b) => b.st + '-' + b.s.replace(':','');
+const personSvg = `<svg width="26" height="26" viewBox="0 0 24 24" fill="#C4BCD4"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6v1H4z"/></svg>`;
+
+function render() {
+  // --- DAY 띠 ---
+  document.getElementById('dayBand').innerHTML = DATA.days.map((label,i)=>
+    `<button class="dayhalf${i===day?' on':''}" data-day="${i}">Day ${i+1} <span class="d-sub">· ${esc(label)}</span></button>`
+  ).join('');
+
+  // --- 뷰 토글 상태 ---
+  document.querySelectorAll('#viewToggle [data-view]').forEach(b=>{
+    b.classList.toggle('is-active', b.dataset.view===view);
+  });
+  document.getElementById('listView').style.display = view==='list' ? 'block' : 'none';
+  document.getElementById('gridView').style.display = view==='grid' ? 'block' : 'none';
+  document.getElementById('viewHint').textContent = view==='list'
+    ? `시간순 상세 프로그램 · Day ${day+1}`
+    : '무대별 시간표 · 블록을 누르면 상세 프로그램으로 이동';
+
+  const featMap = {};
+  DATA.featured[day].forEach(f=>{ featMap[f.title] = f; });
+
+  // --- LIST VIEW : 전체 프로그램 (시간순) ---
+  const progs = DATA.schedule[day].slice().sort((a,b)=> toMin(a.s)-toMin(b.s) || a.st-b.st);
+  document.getElementById('progList').innerHTML = progs.map(b=>{
+    const s = DATA.stages[b.st];
+    const f = featMap[b.title];
+    const cat = (f && f.cat) ? f.cat : s.name.replace('PLAY ','');
+    const desc = (f && f.desc)
+      ? `<p class="prow-desc">${esc(f.desc)}</p>`
+      : `<p class="prow-desc acc-ph">내용 준비 중</p>`;
+    const faces = (f && f.cast && f.cast.length)
+      ? f.cast.map(([name,role])=>`
+        <div class="acc-face">
+          <div class="acc-avatar" style="border-color:${s.color}; color:${s.color};">${esc(name[0])}</div>
+          <div class="acc-face-name">${esc(name)}</div>
+          <div class="acc-face-role">${esc(role)}</div>
+        </div>`).join('')
+      : [0,1].map(()=>`
+        <div class="acc-face">
+          <div class="acc-avatar acc-avatar-ph">${personSvg}</div>
+          <div class="acc-face-name acc-ph">준비 중</div>
+          <div class="acc-face-role">&nbsp;</div>
+        </div>`).join('');
+    return `<div class="prow" id="prog-${keyOf(b)}" style="--hl:${s.color};">
+      <div class="prow-time" style="background:${tg[b.st]};">
+        <div class="t-start">${esc(b.s)}</div>
+        <div class="t-bar"></div>
+        <div class="t-end">${esc(b.e)}</div>
+      </div>
+      <div class="prow-body" style="background:${s.bg};">
+        <div class="prow-halftone"></div>
+        <div class="prow-inner">
+          <div class="prow-textcol">
+            <div class="prow-head">
+              <span class="cat-badge" style="background:${s.color};">${esc(cat)}</span>
+              <span class="stage-name" style="color:${s.color};">${esc(s.name)}</span>
+            </div>
+            <div class="prow-title">${esc(b.title)}</div>
+            ${desc}
+          </div>
+          <div class="acc-cast">${faces}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // --- GRID VIEW : LEGEND ---
+  document.getElementById('legend').innerHTML = DATA.stages.map(s=>
+    `<div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:5px; background:${s.color};"></span><span style="font-weight:700; font-size:14px; color:#3F3866;">${esc(s.name)}</span></div>`
+  ).join('');
+
+  // --- VIEW 2 : TIMETABLE GRID ---
+  let cells = '';
+  // corner
+  cells += `<div style="grid-column:1; grid-row:1; border-bottom:1px solid #EDE7F6; border-right:1px solid #EDE7F6; background:#F8F8F9;"></div>`;
+  // stage headers
+  DATA.stages.forEach((s,i)=>{
+    cells += `<div style="grid-column:${i+2}; grid-row:1; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:#fff; background:${s.color}; border-right:1px solid rgba(255,255,255,0.25);">${esc(s.name)}</div>`;
+  });
+  // hourly time labels
+  for(let h=11; h<=19; h++){
+    cells += `<div style="grid-column:1; grid-row:${rowOf(h+':00')}; display:flex; align-items:flex-start; justify-content:flex-end; padding:2px 8px 0 0; font-size:12px; font-weight:600; color:#9A93B5; border-right:1px solid #EDE7F6; border-top:1px solid #F1ECF8; font-variant-numeric:tabular-nums;">${h}:00</div>`;
+  }
+  // background gridlines
+  for(let r=2; r<=25; r++) for(let c=2; c<=4; c++){
+    cells += `<div style="grid-column:${c}; grid-row:${r}; border-top:1px solid #F4F0FA; border-right:1px solid #F1ECF8;"></div>`;
+  }
+  // program blocks
+  DATA.schedule[day].forEach(b=>{
+    const s = DATA.stages[b.st];
+    cells += `<div class="ghcard" data-go="${keyOf(b)}" style="grid-column:${b.st+2}; grid-row:${rowOf(b.s)} / ${rowOf(b.e)}; padding:9px 11px; background:${s.bg}; overflow:hidden;">
+        <div style="font-weight:700; font-size:13px; line-height:1.25; color:#2B1E55;">${esc(b.title)}</div>
+        <div style="margin-top:3px; font-size:11px; font-weight:600; color:${s.color}; font-variant-numeric:tabular-nums;">${esc(b.s)} ~ ${esc(b.e)}</div>
+      </div>`;
+  });
+  document.getElementById('timetable').innerHTML = cells;
+}
+
+// day 띠
+document.getElementById('dayBand').addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-day]');
+  if(!btn) return;
+  day = Number(btn.dataset.day);
+  render();
+});
+// 뷰 토글 (리스트/그리드)
+document.getElementById('viewToggle').addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-view]');
+  if(!btn) return;
+  view = btn.dataset.view;
+  render();
+});
+// 그리드 블록 클릭 → 리스트로 이동 + 하이라이트
+document.getElementById('timetable').addEventListener('click', (e)=>{
+  const blk = e.target.closest('[data-go]');
+  if(!blk) return;
+  view = 'list';
+  render();
+  const el = document.getElementById('prog-' + blk.dataset.go);
+  if(el){
+    el.scrollIntoView({ behavior:'smooth', block:'center' });
+    el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl');
+  }
+});
+render();
+</script>
+</body>
+</html>

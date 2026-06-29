@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 크리에이터 미디어 대전</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Pretendard',-apple-system,sans-serif; color:#2B1E55; -webkit-font-smoothing:antialiased; background:#fff; word-break:keep-all; overflow-wrap:break-word; }
+  ::selection{ background:#E12C84; color:#fff; }
+  a{ text-decoration:none; color:inherit; }
+  img{ display:block; max-width:100%; }
+  @font-face{ font-family:'KOHIBaeum'; src:url('assets/fonts/KOHIBaeum.ttf') format('truetype'); font-weight:normal; font-style:normal; font-display:swap; }
+
+  /* hover: 실제 동작 있는 요소만 */
+  .navlink:hover{ color:#E12C84 !important; }
+  .btn{ transition:transform .16s ease, box-shadow .16s ease, background .16s ease; }
+  .btn:hover{ opacity:0.9; }
+  .linkcard{ transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .linkcard:hover{ border-color:#D9CDEC !important; }
+  .noticerow{ transition:background .14s ease; }
+  .noticerow:hover{ background:#FAF7FD; }
+  .sns:hover{ background:rgba(255,255,255,0.22); }
+
+  /* 글리치 워드마크 */
+  .glitch{ position:relative; display:inline-block; animation:glitch 3.6s infinite steps(1); }
+  /* 지 — (블립) ... 지직 (연타) 리듬 */
+  @keyframes glitch{
+    0%,66%,100%{ text-shadow:none; transform:translate(0,0); }
+    67%{ text-shadow:2px 0 rgba(225,44,132,.85), -2px 0 rgba(44,111,214,.85); transform:translate(-2px,1px); }
+    69%{ text-shadow:none; transform:translate(0,0); }
+    86%{ text-shadow:none; transform:translate(0,0); }
+    87%{ text-shadow:3px 0 rgba(225,44,132,.9), -3px 0 rgba(44,111,214,.9); transform:translate(-2px,-1px); }
+    89%{ text-shadow:-3px 0 rgba(225,44,132,.9), 3px 0 rgba(44,111,214,.9); transform:translate(2px,1px); }
+    91%{ text-shadow:2px 0 rgba(225,44,132,.85), -2px 0 rgba(44,111,214,.85); transform:translate(-1px,1px); }
+    93%{ text-shadow:none; transform:translate(1px,0); }
+  }
+  @media (prefers-reduced-motion: reduce){ .glitch{ animation:none; } }
+
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+  .sectlabel{ font-weight:800; font-size:13px; letter-spacing:0.14em; }
+  .h2{ font-weight:800; font-size:30px; letter-spacing:-0.02em; color:#2B1E55; }
+
+  /* 메쉬(하프톤 도트) — 빈 영역에 절제해서. 마스크로 한쪽에만 깔린다 */
+  .mesh{ position:absolute; pointer-events:none; z-index:0; background-image:radial-gradient(circle, rgba(108,80,168,0.16) 1.4px, transparent 1.6px); background-size:16px 16px; }
+  /* 스파클 액센트 (✦) */
+  .spark{ position:absolute; pointer-events:none; user-select:none; z-index:0; line-height:1; opacity:.85; }
+
+  /* 마퀴 */
+  .marquee{ display:flex; width:max-content; white-space:nowrap; will-change:transform; animation:marquee 30s linear infinite; }
+  .marquee-set{ display:flex; align-items:center; }
+  @keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .marquee{ animation:none; } }
+
+  .side-deco{ position:absolute; pointer-events:none; user-select:none; z-index:0; opacity:0.96; }
+  @media (max-width:1640px){ .side-deco{ display:none; } }
+
+  @media (max-width:920px){
+    .hero-grid{ grid-template-columns:1fr !important; gap:34px !important; }
+    .quick-grid{ grid-template-columns:1fr !important; }
+  }
+  @media (max-width:760px){
+    .wrap{ padding:0 20px; }
+    .hide-sm{ display:none !important; }
+    .hero-h1{ font-size:42px !important; }
+    .h2{ font-size:24px !important; }
+    #companyGrid{ grid-template-columns:repeat(3,1fr) !important; }
+    #creatorGrid{ grid-template-columns:repeat(2,1fr) !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header style="position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.82); backdrop-filter:blur(14px); border-bottom:1px solid #EDE7F6;">
+  <div class="wrap" style="height:72px; display:flex; align-items:center; gap:34px;">
+    <a href="index.html" style="display:flex; align-items:center; gap:11px;">
+      <img src="assets/images/logo.png" alt="크리에이터 미디어 대전" style="height:36px; width:auto; display:block;">
+      <span style="font-weight:800; font-size:16px; letter-spacing:-0.01em; color:#2B1E55;">크리에이터 미디어 대전</span>
+    </a>
+    <nav class="hide-sm" style="display:flex; gap:26px; margin-left:8px;">
+      <a class="navlink" href="about.html" style="font-weight:700; font-size:15px; color:#3F3866;">About</a>
+      <a class="navlink" href="program.html" style="font-weight:700; font-size:15px; color:#3F3866;">프로그램</a>
+      <a class="navlink" href="companies.html" style="font-weight:700; font-size:15px; color:#3F3866;">참가기업</a>
+      <a class="navlink" href="register.html" style="font-weight:700; font-size:15px; color:#3F3866;">참관객</a>
+      <a class="navlink" href="creators.html" style="font-weight:700; font-size:15px; color:#3F3866;">크리에이터</a>
+      <a class="navlink" href="support-center.html" style="font-weight:700; font-size:15px; color:#3F3866;">고객지원</a>
+    </nav>
+    <div style="margin-left:auto; display:flex; align-items:center; gap:14px;">
+      <span class="hide-sm" style="font-size:13px; font-weight:600; color:#9A93B5;">KOR<span style="color:#D8D0E8;">&nbsp;|&nbsp;</span><span style="color:#C3BAD8;">ENG</span></span>
+      <a class="btn" href="register-form.html" style="padding:10px 20px; border-radius:999px; font-weight:700; font-size:14px; color:#fff; background:linear-gradient(120deg,#6B3FA0,#2C6FD6);">사전등록</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO / 키비주얼 ===================== -->
+<section style="position:relative; overflow:hidden; background:linear-gradient(135deg,#FBE0EE 0%,#EDE2F6 32%,#DCE8F8 66%,#EAF3FC 100%);">
+  <!-- 하프톤 도트 -->
+  <div style="position:absolute; inset:0; opacity:0.5; background-image:radial-gradient(circle, rgba(225,44,132,0.24) 1.6px, transparent 1.8px); background-size:15px 15px; -webkit-mask-image:linear-gradient(120deg,#000,transparent 62%); mask-image:linear-gradient(120deg,#000,transparent 62%);"></div>
+  <!-- 스펙트럼 스월 그래픽 (우측 영상 뒤) -->
+  <div style="position:absolute; right:-40px; top:40px; width:560px; height:520px; border-radius:50%; background:conic-gradient(from 200deg, #E12C84, #6F4DA8, #2C6FD6, #18B6C9, #3FB44A, #AECE3C, #E12C84); filter:blur(46px); opacity:0.5;"></div>
+  <div style="position:absolute; left:-110px; bottom:-160px; width:440px; height:440px; border-radius:50%; background:radial-gradient(circle, rgba(44,111,214,0.16), transparent 70%); filter:blur(8px);"></div>
+
+  <div class="wrap" style="position:relative; padding:70px 32px 64px;">
+    <div class="hero-grid" style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:54px; align-items:center;">
+
+      <!-- LEFT: 타이틀 -->
+      <div>
+        <h1 class="hero-h1" style="font-family:'KOHIBaeum','Pretendard',sans-serif; font-weight:800; font-size:62px; line-height:1.22; letter-spacing:-0.02em; color:#2B1E55;">
+          2026<br>크리에이터<br><span class="glitch">미디어 대전</span>
+        </h1>
+        <p style="margin-top:18px; font-weight:700; font-size:20px; color:#E12C84; letter-spacing:-0.01em;">Creator Square · 모두의 창작이 모이는 광장</p>
+        <p style="margin-top:14px; font-size:17px; line-height:1.6; color:#5C5380; max-width:440px;">
+          영상 · 방송 · 게임 · 음악 · 사진 · 웹툰, 8개 미디어 분야의 크리에이터와 팬이 한자리에 모이는 이틀.
+        </p>
+
+        <div style="margin-top:20px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;">
+          <span style="font-weight:800; font-size:24px; letter-spacing:-0.02em; color:#2B1E55;">8.28<span style="font-weight:700; font-size:16px; color:#9A93B5;">(금)</span> – 8.29<span style="font-weight:700; font-size:16px; color:#9A93B5;">(토)</span></span>
+          <span style="font-weight:700; font-size:16px; color:#2C6FD6;">서울 마곡 코엑스 · 마곡광장</span>
+        </div>
+
+        <div style="margin-top:26px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn" href="register.html" style="padding:14px 28px; border-radius:999px; font-weight:800; font-size:15px; color:#fff; background:linear-gradient(120deg,#6B3FA0,#2C6FD6); box-shadow:0 12px 28px rgba(72,80,200,0.32);">참관객 사전등록</a>
+          <a class="btn" href="creators.html" style="padding:14px 28px; border-radius:999px; font-weight:800; font-size:15px; color:#E12C84; background:#fff; border:2px solid #F3C9DF;">크리에이터 등록 ▸</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: 영상 (히어로 내부) -->
+      <div style="position:relative;">
+        <div style="position:relative; border-radius:22px; overflow:hidden; aspect-ratio:16/9; background:#000; border:1px solid rgba(255,255,255,0.7); box-shadow:0 24px 60px rgba(80,50,140,0.28);">
+          <iframe style="position:absolute; inset:0; width:100%; height:100%; border:0;" src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="사전 홍보 영상" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div style="margin-top:14px; display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:#E12C84; color:#fff; font-weight:700; font-size:12px;">▶ 사전 홍보 영상</span>
+          <span style="font-weight:600; font-size:14px; color:#6E6790;">2026 크리에이터 미디어 대전, 이렇게 즐기세요.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 마퀴 ===================== -->
+<section style="overflow:hidden; border-top:1px solid #EDE7F6; border-bottom:1px solid #EDE7F6; padding:18px 0; background:#fff;">
+  <div class="marquee">
+    <div class="marquee-set">
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#E12C84;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#6F4DA8;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#2C6FD6;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#18B6C9;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#3FB44A;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#AECE3C;">✦</span>
+    </div>
+    <div class="marquee-set" aria-hidden="true">
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#E12C84;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#6F4DA8;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#2C6FD6;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#18B6C9;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#3FB44A;">✦</span>
+      <span class="glitch" style="font-weight:800; font-size:28px; letter-spacing:0.06em; color:#2B1E55; padding:0 26px;">KOREA CREATOR FESTA</span><span style="font-size:18px; color:#AECE3C;">✦</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 퀵링크 카드 (배경색 없이) ===================== -->
+<section style="background:#fff; position:relative;">
+  <!-- 양옆 여백 장식 (어긋난 높이) -->
+  <img class="side-deco" src="assets/images/game.png" alt="" style="left:150px; bottom:-22px; width:138px; transform:rotate(-7deg);">
+  <img class="side-deco" src="assets/images/microphone.png" alt="" style="right:150px; top:46px; width:122px; transform:rotate(8deg);">
+  <div class="wrap" style="position:relative; z-index:1; padding:46px 32px 60px;">
+    <div class="quick-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <a class="linkcard" href="program.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:0; padding:40px 24px 18px; min-height:200px; border-radius:24px; background:#FCEAF3; border:1px solid #F4D2E4;">
+        <span style="display:block;">
+          <span style="display:block; font-weight:800; font-size:22px; color:#2B1E55;">프로그램 일정</span>
+          <span style="display:block; margin-top:5px; font-size:16px; color:#A86A8A;">무대 · 체험 타임테이블</span>
+        </span>
+        <span style="display:flex; align-items:center; justify-content:center; height:180px; margin-top:-12px;">
+          <img src="assets/images/callendar.png" alt="" style="width:140px; height:140px; object-fit:contain; display:block;">
+        </span>
+      </a>
+      <a class="linkcard" href="program.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:0; padding:40px 24px 18px; min-height:200px; border-radius:24px; background:#FBF3DA; border:1px solid #F0E4B8;">
+        <span style="display:block;">
+          <span style="display:block; font-weight:800; font-size:22px; color:#2B1E55;">부스 배치도</span>
+          <span style="display:block; margin-top:5px; font-size:16px; color:#9A8634;">전시장 맵 안내</span>
+        </span>
+        <span style="display:flex; align-items:center; justify-content:center; height:180px; margin-top:-12px;">
+          <img src="assets/images/map.png" alt="" style="width:140px; height:140px; object-fit:contain; display:block;">
+        </span>
+      </a>
+      <a class="linkcard" href="creators.html" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:0; padding:40px 24px 18px; min-height:200px; border-radius:24px; background:#E7EFFB; border:1px solid #CFE0F5;">
+        <span style="display:block;">
+          <span style="display:block; font-weight:800; font-size:22px; color:#2B1E55;">크리에이터 리스트</span>
+          <span style="display:block; margin-top:5px; font-size:16px; color:#5A7EB0;">참여 크리에이터 보기</span>
+        </span>
+        <span style="display:flex; align-items:center; justify-content:center; height:180px; margin-top:-12px;">
+          <img src="assets/images/creator.png" alt="" style="width:180px; height:180px; object-fit:contain; display:block;">
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 행사 소개 ===================== -->
+<section id="about" style="position:relative; overflow:hidden; padding:84px 0;">
+  <div class="mesh" style="top:-30px; right:-30px; width:360px; height:300px; -webkit-mask-image:radial-gradient(circle at top right,#000,transparent 72%); mask-image:radial-gradient(circle at top right,#000,transparent 72%);"></div>
+  <div class="wrap" style="position:relative; z-index:1;">
+    <div style="display:flex; align-items:baseline; gap:13px;">
+      <span class="sectlabel" style="color:#E12C84;">ABOUT</span>
+      <h2 class="h2">행사 소개</h2>
+    </div>
+    <p style="margin-top:18px; font-size:18px; line-height:1.75; color:#5C5380; max-width:760px;">
+      크리에이터 미디어 대전은 1인 미디어 · 콘텐츠 크리에이터 생태계의 모든 주체가 모이는 국내 최대 규모의 미디어 페스티벌입니다.
+      무대 공연과 토크쇼, 참여 체험, 산업 컨퍼런스, 그리고 참가기업·크리에이터 부스까지 — 이틀간 마곡 코엑스와 마곡광장 전역에서 펼쳐집니다.
+    </p>
+
+    <!-- 8개 미디어 카테고리 칩 (스펙트럼) -->
+    <div style="margin-top:34px; display:flex; flex-wrap:wrap; gap:11px;">
+      <span style="padding:9px 18px; border-radius:999px; font-weight:700; font-size:14px; color:#E12C84; background:#FBE4F0;">영상</span>
+      <span style="padding:9px 18px; border-radius:999px; font-weight:700; font-size:14px; color:#6F4DA8; background:#EFE9F8;">방송</span>
+      <span style="padding:9px 18px; border-radius:999px; font-weight:700; font-size:14px; color:#2C6FD6; background:#E3EDFC;">게임</span>
+      <span style="padding:9px 18px; border-radius:999px; font-weight:700; font-size:14px; color:#18B6C9; background:#E0F4F6;">음악</span>
+      <span style="padding:9px 18px; border-radius:999px; font-weight:700; font-size:14px; color:#3FB44A; background:#E6F5E7;">사진</span>
+      <span style="padding:9px 18px; border-radius:999px; font-weight:700; font-size:14px; color:#7E9A1E; background:#F2F6DF;">웹툰</span>
+    </div>
+
+    <!-- 통계 -->
+    <div style="margin-top:44px; display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+      <div style="padding:26px 24px; border-radius:18px; border:1px solid #C9C5D0; background:#fff;">
+        <div style="font-weight:800; font-size:40px; letter-spacing:-0.02em; background:linear-gradient(120deg,#E12C84,#6F4DA8); -webkit-background-clip:text; background-clip:text; color:transparent;">120<span style="font-size:24px;">+</span></div>
+        <div style="margin-top:4px; font-weight:600; font-size:14px; color:#6E6790;">참가 기업</div>
+      </div>
+      <div style="padding:26px 24px; border-radius:18px; border:1px solid #C9C5D0; background:#fff;">
+        <div style="font-weight:800; font-size:40px; letter-spacing:-0.02em; background:linear-gradient(120deg,#6F4DA8,#2C6FD6); -webkit-background-clip:text; background-clip:text; color:transparent;">200<span style="font-size:24px;">+</span></div>
+        <div style="margin-top:4px; font-weight:600; font-size:14px; color:#6E6790;">참여 크리에이터</div>
+      </div>
+      <div style="padding:26px 24px; border-radius:18px; border:1px solid #C9C5D0; background:#fff;">
+        <div style="font-weight:800; font-size:40px; letter-spacing:-0.02em; background:linear-gradient(120deg,#2C6FD6,#18B6C9); -webkit-background-clip:text; background-clip:text; color:transparent;">40<span style="font-size:24px;">+</span></div>
+        <div style="margin-top:4px; font-weight:600; font-size:14px; color:#6E6790;">무대 프로그램</div>
+      </div>
+      <div style="padding:26px 24px; border-radius:18px; border:1px solid #C9C5D0; background:#fff;">
+        <div style="font-weight:800; font-size:40px; letter-spacing:-0.02em; background:linear-gradient(120deg,#18B6C9,#3FB44A); -webkit-background-clip:text; background-clip:text; color:transparent;">5<span style="font-size:24px;">만+</span></div>
+        <div style="margin-top:4px; font-weight:600; font-size:14px; color:#6E6790;">예상 관람객</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 프로그램 소개 ===================== -->
+<section id="program" style="padding:84px 0; background:linear-gradient(180deg,#FBFAFE,#F4F0FB);">
+  <div class="wrap">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:baseline; gap:13px;">
+        <span class="sectlabel" style="color:#2C6FD6;">PROGRAM</span>
+        <h2 class="h2">프로그램 소개</h2>
+      </div>
+      <a class="navlink" href="program.html" style="font-weight:700; font-size:15px; color:#2C6FD6;">전체 일정 보기 ▸</a>
+    </div>
+
+    <div style="margin-top:30px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <a class="linkcard" href="program.html" style="display:block; border-radius:20px; overflow:hidden; border:1px solid #EDE7F6; background:#fff; box-shadow:0 8px 26px rgba(80,50,140,0.06);">
+        <div style="height:140px; background:linear-gradient(150deg,#E12C84,#EC6FA9); display:flex; align-items:flex-end; padding:18px; color:#fff;">
+          <span style="font-weight:800; font-size:20px;">PLAY STAGE</span>
+        </div>
+        <div style="padding:22px 24px;">
+          <h3 style="font-weight:800; font-size:19px; color:#2B1E55;">메인 무대 공연</h3>
+          <p style="margin-top:8px; font-size:15px; line-height:1.6; color:#6E6790;">개막식, 크리에이터 쇼, 라이브 무대, 시상식까지 이틀간의 핵심 무대.</p>
+        </div>
+      </a>
+      <a class="linkcard" href="program.html" style="display:block; border-radius:20px; overflow:hidden; border:1px solid #EDE7F6; background:#fff; box-shadow:0 8px 26px rgba(80,50,140,0.06);">
+        <div style="height:140px; background:linear-gradient(150deg,#2C6FD6,#4FA3E8); display:flex; align-items:flex-end; padding:18px; color:#fff;">
+          <span style="font-weight:800; font-size:20px;">PLAY STUDIO</span>
+        </div>
+        <div style="padding:22px 24px;">
+          <h3 style="font-weight:800; font-size:19px; color:#2B1E55;">체험 · 세미나</h3>
+          <p style="margin-top:8px; font-size:15px; line-height:1.6; color:#6E6790;">영상 편집, 1인 방송 장비, 수익화 전략까지 직접 배우는 워크숍.</p>
+        </div>
+      </a>
+      <a class="linkcard" href="program.html" style="display:block; border-radius:20px; overflow:hidden; border:1px solid #EDE7F6; background:#fff; box-shadow:0 8px 26px rgba(80,50,140,0.06);">
+        <div style="height:140px; background:linear-gradient(150deg,#3FB44A,#AECE3C); display:flex; align-items:flex-end; padding:18px; color:#fff;">
+          <span style="font-weight:800; font-size:20px;">PLAY GROUND</span>
+        </div>
+        <div style="padding:22px 24px;">
+          <h3 style="font-weight:800; font-size:19px; color:#2B1E55;">야외 · 마켓</h3>
+          <p style="margin-top:8px; font-size:15px; line-height:1.6; color:#6E6790;">마곡광장 버스킹, 푸드 & 굿즈 마켓, 야외 라이브 공연.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 참가기업 소개 ===================== -->
+<section id="companies" style="position:relative; overflow:hidden; padding:84px 0;">
+  <div class="mesh" style="bottom:-40px; left:-30px; width:340px; height:280px; -webkit-mask-image:radial-gradient(circle at bottom left,#000,transparent 72%); mask-image:radial-gradient(circle at bottom left,#000,transparent 72%);"></div>
+  <div class="wrap" style="position:relative; z-index:1;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:baseline; gap:13px;">
+        <span class="sectlabel" style="color:#6F4DA8;">PARTNERS</span>
+        <h2 class="h2">참가기업</h2>
+      </div>
+      <a class="navlink" href="companies.html" style="font-weight:700; font-size:15px; color:#6F4DA8;">기업 리스트 ▸</a>
+    </div>
+    <p style="margin-top:14px; font-size:16px; color:#6E6790;">미디어 · 콘텐츠 · 플랫폼 · 장비 분야 120여 개 기업이 함께합니다.</p>
+
+    <div id="companyGrid" style="margin-top:30px; display:grid; grid-template-columns:repeat(6,1fr); gap:16px;"></div>
+  </div>
+</section>
+
+<!-- ===================== 크리에이터 소개 ===================== -->
+<section id="creators" style="padding:84px 0; background:linear-gradient(180deg,#F8F5FD,#FFF);">
+  <div class="wrap">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:baseline; gap:13px;">
+        <span class="sectlabel" style="color:#E12C84;">CREATORS</span>
+        <h2 class="h2">참여 크리에이터</h2>
+      </div>
+      <a class="navlink" href="creators.html" style="font-weight:700; font-size:15px; color:#E12C84;">크리에이터 리스트 ▸</a>
+    </div>
+    <p style="margin-top:14px; font-size:16px; color:#6E6790;">8개 분야를 대표하는 200여 명의 크리에이터가 무대와 부스에서 팬을 만납니다.</p>
+
+    <div id="creatorGrid" style="margin-top:30px; display:grid; grid-template-columns:repeat(5,1fr); gap:20px;"></div>
+  </div>
+</section>
+
+<!-- ===================== 개막식 라이브 ===================== -->
+<section id="live" style="padding:84px 0; background:#1C1340; color:#fff;">
+  <div class="wrap">
+    <div style="display:flex; align-items:center; gap:11px; justify-content:center;">
+      <span style="display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:999px; background:#E12C84; font-size:12px; font-weight:700;"><span style="width:7px; height:7px; border-radius:50%; background:#fff;"></span>LIVE</span>
+      <span class="sectlabel" style="color:#EC6FA9;">OPENING</span>
+    </div>
+    <h2 class="h2" style="color:#fff; text-align:center; margin-top:12px;">개막식 생중계</h2>
+    <p style="text-align:center; margin-top:10px; font-size:16px; color:rgba(255,255,255,0.6);">8.28(금) 11:00 · 현장에 오지 못해도 실시간으로 함께하세요.</p>
+
+    <div style="margin:30px auto 0; max-width:860px;">
+      <div style="position:relative; border-radius:20px; overflow:hidden; aspect-ratio:16/9; background:#000; border:1px solid rgba(255,255,255,0.12); box-shadow:0 24px 60px rgba(0,0,0,0.4);">
+        <iframe style="position:absolute; inset:0; width:100%; height:100%; border:0;" src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="개막식 라이브" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 사전등록 바로가기 ===================== -->
+<section id="register" style="padding:84px 0;">
+  <div class="wrap">
+    <div style="position:relative; overflow:hidden; border-radius:28px; background:linear-gradient(120deg,#6B3FA0,#2C6FD6); padding:60px 56px; box-shadow:0 24px 60px rgba(72,80,200,0.28);">
+      <div style="position:absolute; inset:0; opacity:0.35; background-image:radial-gradient(circle, rgba(255,255,255,0.5) 1.5px, transparent 1.7px); background-size:16px 16px; -webkit-mask-image:linear-gradient(110deg,#000,transparent 65%); mask-image:linear-gradient(110deg,#000,transparent 65%);"></div>
+      <div style="position:relative; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;">
+        <div>
+          <h2 style="font-weight:800; font-size:34px; letter-spacing:-0.02em; color:#fff;">지금 사전등록하세요</h2>
+          <p style="margin-top:12px; font-size:17px; line-height:1.6; color:rgba(255,255,255,0.82); max-width:520px;">사전등록 시 무료 입장과 현장 굿즈 혜택을 받으실 수 있습니다. 참관객과 크리에이터 등록을 각각 진행합니다.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px; min-width:220px;">
+          <a class="btn" href="register.html" style="text-align:center; padding:16px 30px; border-radius:999px; font-weight:800; font-size:16px; color:#6B3FA0; background:#fff; box-shadow:0 10px 24px rgba(0,0,0,0.18);">참관객 사전등록</a>
+          <a class="btn" href="creators.html" style="text-align:center; padding:16px 30px; border-radius:999px; font-weight:800; font-size:16px; color:#fff; background:rgba(255,255,255,0.16); border:1.5px solid rgba(255,255,255,0.5);">크리에이터 사전등록</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 공지사항 ===================== -->
+<section id="notice" style="padding:0 0 90px;">
+  <div class="wrap">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:baseline; gap:13px;">
+        <span class="sectlabel" style="color:#2C6FD6;">NOTICE</span>
+        <h2 class="h2">공지사항</h2>
+      </div>
+      <a class="navlink" href="support-center.html" style="font-weight:700; font-size:15px; color:#2C6FD6;">전체 보기 ▸</a>
+    </div>
+
+    <div id="noticeList" style="margin-top:26px; border-top:1px solid #EDE7F6;"></div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER (+ SNS) ===================== -->
+<footer style="background:#2B1E55; color:#fff;">
+  <div class="wrap" style="padding:54px 32px 30px;">
+    <div style="display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap;">
+      <div style="max-width:380px;">
+        <div style="display:flex; align-items:center; gap:11px;">
+          <img src="assets/images/logo.png" alt="크리에이터 미디어 대전" style="height:34px; width:auto; display:block;">
+          <span style="font-weight:800; font-size:16px;">2026 크리에이터 미디어 대전</span>
+        </div>
+        <p style="margin-top:16px; font-size:14px; line-height:1.7; color:rgba(255,255,255,0.6);">
+          2026. 8. 28.(금) ~ 29.(토)<br>
+          서울 마곡 코엑스 1F 전시장 &amp; 마곡광장
+        </p>
+        <!-- SNS 바로가기 -->
+        <div style="margin-top:22px; display:flex; gap:12px;">
+          <a class="sns btn" href="#" aria-label="Instagram" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="#fff" stroke="none"/></svg></a>
+          <a class="sns btn" href="#" aria-label="YouTube" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .6 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.4 12 31 31 0 0 0 23 7.5zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+          <a class="sns btn" href="#" aria-label="X" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a class="sns btn" href="#" aria-label="Naver Blog" style="width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff;">blog</a>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:60px; flex-wrap:wrap;">
+        <div>
+          <div style="font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:0.04em;">바로가기</div>
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+            <a class="navlink" href="index.html" style="font-size:14px; color:rgba(255,255,255,0.8);">행사소개</a>
+            <a class="navlink" href="program.html" style="font-size:14px; color:rgba(255,255,255,0.8);">프로그램</a>
+            <a class="navlink" href="companies.html" style="font-size:14px; color:rgba(255,255,255,0.8);">참가기업</a>
+            <a class="navlink" href="register.html" style="font-size:14px; color:rgba(255,255,255,0.8);">사전등록</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:0.04em;">고객지원</div>
+          <div style="margin-top:14px; display:flex; flex-direction:column; gap:10px;">
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">공지사항</a>
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">FAQ</a>
+            <a class="navlink" href="support-center.html" style="font-size:14px; color:rgba(255,255,255,0.8);">Q&amp;A</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:44px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.12); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center;">
+      <span style="font-size:13px; color:rgba(255,255,255,0.5);">주최 방송미디어통신위원회 · 주관 한국전파진흥협회(RAPA)</span>
+      <span style="font-size:13px; color:rgba(255,255,255,0.4);">© 2026 Creator Media Festa. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// ===== 참가기업 (더미: 작년 데이터 가정) =====
+const COMPANIES = [
+  '판도라TV','샌드박스','트레져헌터','다이아TV','콜랩아시아','비디오빌리지',
+  '아프리카TV','순이엔티','레페리','글랜스TV','메이크어스','우리엔터',
+  '스튜디오룰루랄라','easy브로스','쉐어하우스','픽셀로','캐리소프트','블래스트',
+  '미디어자몽','와우엔터','크리커뮤니티','구도쉘리'
+];
+const COMP_BG = ['#FBE4F0','#EFE9F8','#E3EDFC','#E0F4F6','#E6F5E7','#F2F6DF'];
+const COMP_FG = ['#E12C84','#6F4DA8','#2C6FD6','#18B6C9','#3FB44A','#7E9A1E'];
+document.getElementById('companyGrid').innerHTML = COMPANIES.map((name,i)=>{
+  const k = i % 6;
+  return `<div style="aspect-ratio:3/2; border-radius:14px; border:1px solid #EDE7F6; background:${COMP_BG[k]}; display:flex; align-items:center; justify-content:center; padding:10px; text-align:center;">
+    <span style="font-weight:800; font-size:14px; letter-spacing:-0.01em; color:${COMP_FG[k]};">${esc(name)}</span>
+  </div>`;
+}).join('');
+
+// ===== 크리에이터 (더미) =====
+const CREATORS = [
+  ['도훈하','영상','#E12C84','#FBE4F0'],['낭월','음악','#18B6C9','#E0F4F6'],
+  ['제프뷰','게임','#2C6FD6','#E3EDFC'],['하림','코미디','#6F4DA8','#EFE9F8'],
+  ['일오월','댄스','#E12C84','#FBE4F0'],['민녕','방송','#6F4DA8','#EFE9F8'],
+  ['보라','브이로그','#3FB44A','#E6F5E7'],['지훈','게임','#2C6FD6','#E3EDFC'],
+  ['린','웹툰','#7E9A1E','#F2F6DF'],['제이','음악','#18B6C9','#E0F4F6'],
+];
+document.getElementById('creatorGrid').innerHTML = CREATORS.map(([name,cat,fg,bg])=>{
+  return `<div style="border-radius:18px; overflow:hidden; border:1px solid #EDE7F6; background:#fff;">
+    <div style="aspect-ratio:1/1; background:${bg}; display:flex; align-items:center; justify-content:center;">
+      <div style="width:74px; height:74px; border-radius:50%; background:#fff; border:2px solid ${fg}; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:28px; color:${fg};">${esc(name[0])}</div>
+    </div>
+    <div style="padding:14px 16px;">
+      <div style="font-weight:800; font-size:16px; color:#2B1E55;">${esc(name)}</div>
+      <div style="margin-top:3px; font-weight:600; font-size:13px; color:${fg};">${esc(cat)}</div>
+    </div>
+  </div>`;
+}).join('');
+
+// ===== 공지사항 (더미) =====
+const NOTICES = [
+  ['공지','2026 크리에이터 미디어 대전 참관객 사전등록 오픈 안내','2026.06.20'],
+  ['모집','참가기업 부스 신청 접수 시작','2026.06.15'],
+  ['모집','크리에이터 무대 라인업 1차 공개','2026.06.10'],
+  ['안내','행사장 오시는 길 · 주차 안내','2026.06.05'],
+  ['공지','개막식 라이브 스트리밍 채널 안내','2026.06.01'],
+];
+const TAGC = { '공지':['#E12C84','#FBE4F0'], '모집':['#2C6FD6','#E3EDFC'], '안내':['#3FB44A','#E6F5E7'] };
+document.getElementById('noticeList').innerHTML = NOTICES.map(([tag,title,date])=>{
+  const [fg,bg] = TAGC[tag] || ['#6E6790','#EFECF6'];
+  return `<a class="noticerow" href="support-center.html" style="display:flex; align-items:center; gap:18px; padding:18px 8px; border-bottom:1px solid #EDE7F6;">
+    <span style="flex:none; padding:5px 12px; border-radius:999px; font-weight:700; font-size:12px; color:${fg}; background:${bg};">${esc(tag)}</span>
+    <span style="flex:1; font-weight:700; font-size:16px; color:#2B1E55;">${esc(title)}</span>
+    <span style="flex:none; font-size:13px; font-weight:600; color:#9A93B5; font-variant-numeric:tabular-nums;">${esc(date)}</span>
+  </a>`;
+}).join('');
+</script>
+</body>
+</html>
